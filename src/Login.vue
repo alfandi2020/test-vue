@@ -79,16 +79,15 @@ export default {
                 password : pass.value
             }).then(function (res){
                 // console.log(res.data);
-                localStorage.set('token',res.data.access_token)
-                   router.push({path:'/home'})
+                $q.localStorage.set('token',res.data.access_token)
+                router.push({path:'/home'})
                 $q.notify({
                     color: 'green-4',
                     textColor: 'white',
                     icon: 'cloud_done',
                     message: "Login Berhasil"
                 })
-            }).catch(error =>
-              {
+            }).catch(function (error) {
                 if (error.response.data.user == "Not Found") {
                     $q.notify({
                     color: 'red-5',
@@ -100,15 +99,6 @@ export default {
               })
            
         }
-        // else {
-        // router.push({path:'/about'})
-        //   $q.notify({
-        //     color: 'green-4',
-        //     textColor: 'white',
-        //     icon: 'cloud_done',
-        //     message: user.value
-        //   })
-        // }
       },
 
     }
