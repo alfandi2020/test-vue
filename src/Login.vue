@@ -11,13 +11,18 @@
                     Login User
                 </div>
                 <div class="row">
-                    <q-input filled v-model="user" label="Username" />
+                    <q-input filled v-model="user" label="Username" input-style="width:250px;" />
                 </div>
                 <div class="row q-mt-lg">
-                    <q-input v-model="pass" label="password" filled :type="isPwd ? 'password' : 'text'"/>
+                    <q-input v-model="pass" label="password" input-style="width:250px;" filled :type="isPwd ? 'password' : 'text'"/>
                 </div>
                 <div class="row q-mt-lg">
-                    <q-btn type="submit" unelevated rounded color="primary" label="Login" />
+                    <div class="col">
+                        <q-btn type="submit" unelevated rounded color="primary" label="Login" />
+                    </div>
+                    <div class="col">
+                       <router-link to="/registrasi"><q-btn unelevated rounded color="warning" label="Registrasi" /></router-link>
+                    </div>
                 </div>
             </div>
             </q-page>
@@ -32,7 +37,7 @@
 import { ref } from 'vue'
 import { useQuasar } from 'quasar'
 import { useRouter} from 'vue-router'
-// import HelloWorld from './components/HelloWorld.vue'
+import {api} from '@/basepath/axios'
 
 export default {
   name: 'LayoutDefault',
@@ -53,6 +58,8 @@ export default {
       isPwd: ref(true),
       Login () {
         if (!user.value) {
+        router.push({path:'/'})
+
           $q.notify({
             color: 'red-5',
             textColor: 'white',
@@ -67,14 +74,41 @@ export default {
             message: 'Password tidak boleh kosong'
           })
         }else {
-        router.push({path:'/about'})
-          $q.notify({
-            color: 'green-4',
-            textColor: 'white',
-            icon: 'cloud_done',
-            message: user.value
-          })
+           api.post('/login',{
+                username  : user.value,
+                password : pass.value
+            }).then(function (res){
+                // console.log(res.data);
+                localStorage.set('token',res.data.access_token)
+                   router.push({path:'/home'})
+                $q.notify({
+                    color: 'green-4',
+                    textColor: 'white',
+                    icon: 'cloud_done',
+                    message: "Login Berhasil"
+                })
+            }).catch(error =>
+              {
+                if (error.response.data.user == "Not Found") {
+                    $q.notify({
+                    color: 'red-5',
+                    textColor: 'white',
+                    icon: 'warning',
+                    message: "User tidak terdaftar",
+                })
+                }
+              })
+           
         }
+        // else {
+        // router.push({path:'/about'})
+        //   $q.notify({
+        //     color: 'green-4',
+        //     textColor: 'white',
+        //     icon: 'cloud_done',
+        //     message: user.value
+        //   })
+        // }
       },
 
     }

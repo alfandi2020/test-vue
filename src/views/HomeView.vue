@@ -1,18 +1,22 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    Hallo selamat datang
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+// import { useQuasar } from 'quasar'
 
 export default {
-  name: 'HomeView',
+  name: 'HomeViewee',
   components: {
-    HelloWorld
+    // HelloWorld
+  },
+  setup(){
+    // const $q = useQuasar()
+    return {
+
+    }
   }
 }
 </script>
