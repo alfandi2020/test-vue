@@ -1,5 +1,10 @@
 <template>
-  <q-layout view="lHh Lpr lFf">
+<q-img
+      src="@/assets/bg.jpg"
+      :ratio="16/9"
+      fit="cover"
+    >
+  <q-layout view="lHh Lpr lFf" style="background:rgba(157, 141, 141, 0)">
     <q-page-container>
         <q-form
         @submit="Login"
@@ -8,13 +13,13 @@
             <q-page class="flex flex-center">
             <div class="q-pa-md">
                 <div class="text-h6 q-mb-lg">
-                    Login User
+                    <p style="color:#027be3;">Login User</p>
                 </div>
                 <div class="row">
-                    <q-input filled v-model="user" label="Username" input-style="width:250px;" />
+                    <q-input filled v-model="user" bg-color="white" label="Username" input-style="width:250px;" />
                 </div>
                 <div class="row q-mt-lg">
-                    <q-input v-model="pass" label="password" input-style="width:250px;" filled :type="isPwd ? 'password' : 'text'"/>
+                    <q-input v-model="pass" bg-color="white" label="password" input-style="width:250px;" filled :type="isPwd ? 'password' : 'text'"/>
                 </div>
                 <div class="row q-mt-lg">
                     <div class="col">
@@ -29,6 +34,7 @@
         </q-form>
     </q-page-container>
   </q-layout>
+  </q-img>
 </template>
 
 <script>
