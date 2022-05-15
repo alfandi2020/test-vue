@@ -4,24 +4,24 @@ background-position: center; background-size: cover;position:absolute;width:100%
   <q-layout view="lHh Lpr lFf" style="background:rgba(157, 141, 141, 0);">
     <q-page-container>
     <div class="row q-mt-lg">
-      <div class="col-12 col-md-2" v-if="mode == 'table'">
+      <div class="col-12 col-md-2 q-ml-lg" v-if="mode == 'table'">
         <q-btn color="primary" @click="mode = 'form'" label="tambah produk" rounded />
       </div>
-      <div class="col-12 col-md-2" v-else-if="mode == 'form'">
+      <div class="col-12 col-md-2 q-ml-lg" v-else-if="mode == 'form'">
         <q-btn color="primary" @click="mode = 'table'" label="back" rounded />
       </div>
-      <div class="col-12 col-md-1">
+      <div class="col-12 col-md-3">
       <q-btn color="warning" @click="logout()" label="Logout" rounded />
 
       </div>
-      <div class="col-12 col-md-7">
+      <div class="col-12 col-md-4">
        <span v-if="mode == 'table'"> Tabel Data Produk</span>
 
       </div>
-      <div class="col-12 col-md-2">
+      <!-- <div class="col-12 col-md-2">
        Hallo {{dataUser.nama}}
 
-      </div>
+      </div> -->
     </div>
     <div v-if="mode == 'form'" >
         <q-form
@@ -196,11 +196,9 @@ const columns = [
 ]
 import { ref } from 'vue'
 import { useQuasar } from 'quasar'
-// import { useRouter} from 'vue-router'
 import {api} from '@/basepath/axios'
-// import {router} from '@/router'
 export default {
-  name: 'HomeViewee',
+  name: 'HomeView',
   components: {
     // HelloWorld
     
@@ -326,10 +324,6 @@ export default {
                 }, 1400);
             })
       },
-      logout(){
-        this.$q.localStorage.remove('token')
-        this.$router.push('/')
-      }
   },
   mounted(){
     // this.addproduk()

@@ -30,7 +30,7 @@ background-position: center; background-size: cover;position:absolute;width:100%
                   </div>
                 </div>
                 <div class="row q-mt-lg">
-                   <div class="col-2">
+                   <div class="col-3">
                        <q-btn type="submit" unelevated rounded color="warning" label="Registrasi" />
                     </div>
                     <div class="col-6">
