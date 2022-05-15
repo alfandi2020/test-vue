@@ -1,6 +1,7 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHistory  } from 'vue-router';
 import Login from "@/Login.vue";
 import Registrasi from "@/Registrasi.vue";
+// import { useQuasar } from 'quasar'
 const routes = [
   {
     path: '/',
@@ -15,7 +16,10 @@ const routes = [
   {
     path: '/home',
     name: 'Home',
-    component: () => import('@/views/HomeView.vue')
+    component: () => import('@/views/HomeView.vue'),
+    meta: {
+      requiresAuth: true,
+   },
   },
   // {
   //   path: '/about',
@@ -26,10 +30,25 @@ const routes = [
   //   component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
   // }
 ]
-
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes
 })
 
+router.beforeEach((to, from, next) => {
+  if (to.matched.some((record) => record.meta.requiresAuth)) {
+    if (localStorage.getItem("token") == null) {
+      router.push({path:'/'})
+    }else{
+      next();
+      console.log('ss')
+    }
+  } else {
+    next();
+    console.log('ssa')
+  }
+});
 export default router
+
+
+

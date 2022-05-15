@@ -1,9 +1,6 @@
 <template>
-<q-img
-      src="@/assets/bg.jpg"
-      :ratio="16/9"
-      fit="cover"
-    >
+<div style="background-image: url('https://i.ibb.co/df6PrbM/bg.jpg');
+background-position: center; background-size: cover;position:absolute;width:100%">
   <q-layout view="lHh Lpr lFf" style="background:rgba(157, 141, 141, 0)">
     <q-page-container>
         <q-form
@@ -34,7 +31,7 @@
         </q-form>
     </q-page-container>
   </q-layout>
-  </q-img>
+  </div>
 </template>
 
 <script>
@@ -107,6 +104,16 @@ export default {
         }
       },
 
+    }
+  },
+  mounted(){
+    if (localStorage.getItem("token") == null) {
+      this.$q.notify({
+                    color: 'warning',
+                    textColor: 'white',
+                    icon: 'warning',
+                    message: "Silahkan Login",
+      })
     }
   }
 }

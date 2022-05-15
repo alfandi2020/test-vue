@@ -1,7 +1,7 @@
 
 import './styles/quasar.sass'
 import '@quasar/extras/material-icons/material-icons.css'
-import { Notify,LocalStorage } from "quasar";
+import { Notify,LocalStorage,Loading } from "quasar";
 // import { router} from 'vue-router'
 
 
@@ -10,6 +10,7 @@ export default {
   config: {},
   plugins: {
     Notify,
-    LocalStorage
+    LocalStorage,
+    Loading
   }
 }
